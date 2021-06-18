@@ -1,6 +1,14 @@
-const list = () => {
+const itemAdd = (label) => {
   return {
-    type: 'LIST',
+    type: 'ITEM_ADD',
+    payload: label,
+  };
+};
+
+const itemInputChange = (label) => {
+  return {
+    type: 'ITEM_INPUT_CHANGE',
+    payload: label,
   };
 };
 
@@ -16,4 +24,4 @@ const search = () => {
   };
 };
 
-export { list, form, search };
+export { itemAdd, itemInputChange, form, search };

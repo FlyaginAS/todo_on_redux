@@ -150,12 +150,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    list: state.list.list,
-    search: state.search.search,
-    addForm: state.addForm.addForm,
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

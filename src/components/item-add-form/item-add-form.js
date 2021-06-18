@@ -1,42 +1,97 @@
 import React, { Component } from 'react';
+import { connect, useStore } from 'react-redux';
+import { itemAdd, itemInputChange } from '../../actions';
 
 import './item-add-form.css';
 
-export default class ItemAddForm extends Component {
+const ItemAddForm = ({ label, itemAdd, itemInputChange }) => {
+  const onLabelChange = (evt) => {
+    // this.setState({
+    //   label: e.target.value,
+    // });
+    let valueInput = evt.target.value;
 
-  state = {
-    label: ''
+    itemInputChange(valueInput);
   };
 
-  onLabelChange = (e) => {
-    this.setState({
-      label: e.target.value
-    })
+  const onSubmit = (evt) => {
+    // e.preventDefault();
+    // const { label } = this.state;
+    // this.setState({ label: '' });
+    // const cb = this.props.onItemAdded || (() => {});
+    // cb(label);
+    evt.preventDefault();
+    itemAdd(label);
   };
 
-  onSubmit = (e) => {
-    e.preventDefault();
-    const { label } = this.state;
-    this.setState({ label: '' });
-    const cb = this.props.onItemAdded || (() => {});
-    cb(label);
+  return (
+    <form className="bottom-panel d-flex" onSubmit={onSubmit}>
+      <input
+        type="text"
+        className="form-control new-todo-label"
+        value={label}
+        onChange={onLabelChange}
+        placeholder="What needs to be done?"
+      />
+
+      <button type="submit" className="btn btn-outline-secondary">
+        Add
+      </button>
+    </form>
+  );
+};
+
+const mapStateToProps = (store) => {
+  return {
+    label: store.addForm.label,
   };
+};
 
-  render() {
-    return (
-      <form
-        className="bottom-panel d-flex"
-        onSubmit={this.onSubmit}>
+const mapDispatchToProps = {
+  itemAdd,
+  itemInputChange,
+};
 
-        <input type="text"
-               className="form-control new-todo-label"
-               value={this.state.label}
-               onChange={this.onLabelChange}
-               placeholder="What needs to be done?" />
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ItemAddForm);
 
-        <button type="submit"
-                className="btn btn-outline-secondary">Add</button>
-      </form>
-    );
-  }
-}
+// export default class ItemAddForm extends Component {
+
+//   state = {
+//     label: ''
+//   };
+
+//   onLabelChange = (e) => {
+//     this.setState({
+//       label: e.target.value
+//     })
+//   };
+
+//   onSubmit = (e) => {
+//     e.preventDefault();
+//     const { label } = this.state;
+//     this.setState({ label: '' });
+//     const cb = this.props.onItemAdded || (() => {});
+//     cb(label);
+//   };
+
+//   render() {
+//     return (
+//       <form
+//         className="bottom-panel d-flex"
+//         onSubmit={this.onSubmit}>
+
+//         <input type="text"
+//                className="form-control new-todo-label"
+//                value={this.state.label}
+//                onChange={this.onLabelChange}
+//                placeholder="What needs to be done?" />
+
+//         <button type="submit"
+//                 className="btn btn-outline-secondary">Add</button>
+//       </form>
+//     );
+//   }
+// }

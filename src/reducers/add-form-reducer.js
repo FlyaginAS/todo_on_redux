@@ -1,14 +1,20 @@
 const addFormReducer = (state, action) => {
   if (state === undefined) {
     return {
-      addForm: 'formDefault',
+      label: '',
     };
   }
 
   switch (action.type) {
-    case 'FORM':
+    case 'ITEM_ADD':
+      console.log(`item ${action.payload} added`);
       return {
-        addForm: 'form',
+        label: action.payload,
+      };
+    case 'ITEM_INPUT_CHANGE':
+      console.log(`item ${action.payload} changed`);
+      return {
+        label: action.payload,
       };
     default:
       return state.addForm;
