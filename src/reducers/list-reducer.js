@@ -25,20 +25,11 @@ const listReducer = (state, action) => {
           done: false,
         },
       ],
+
       maxId: 100,
     };
   }
   switch (action.type) {
-    //   onDelete = (id) => {
-    //     this.setState((state) => {
-    //       const idx = state.items.findIndex((item) => item.id === id);
-    //       const items = [
-    //         ...state.items.slice(0, idx),
-    //         ...state.items.slice(idx + 1),
-    //       ];
-    //       return { items };
-    //     });
-    //   };
     case 'ITEM_TOGGLE_DONE':
       let items = toggleProperty(
         state.list.items,
