@@ -7,7 +7,6 @@ import ItemStatusFilter from '../item-status-filter';
 import ItemAddForm from '../item-add-form';
 
 import './app.css';
-import { connect } from 'react-redux';
 
 class App extends Component {
   maxId = 100;
@@ -108,14 +107,6 @@ class App extends Component {
   }
 
   render() {
-    /**
-     * redux
-     */
-    const { list, addForm } = this.props;
-
-    console.log(`list is ${list} form is ${addForm} `);
-    /** */
-
     const { items, filter, search } = this.state;
     const doneCount = items.filter((item) => item.done).length;
     const toDoCount = items.length - doneCount;

@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
-import { connect, useStore } from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 import { itemAdd, itemInputChange } from '../../actions';
 
 import './item-add-form.css';
 
 const ItemAddForm = ({ label, itemAdd, itemInputChange }) => {
   const onLabelChange = (evt) => {
-    // this.setState({
-    //   label: e.target.value,
-    // });
     let valueInput = evt.target.value;
 
     itemInputChange(valueInput);
   };
 
   const onSubmit = (evt) => {
-    // e.preventDefault();
-    // const { label } = this.state;
-    // this.setState({ label: '' });
-    // const cb = this.props.onItemAdded || (() => {});
-    // cb(label);
     evt.preventDefault();
     itemAdd(label);
   };

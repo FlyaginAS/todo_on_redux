@@ -1,3 +1,39 @@
+//search
+const searchChanged = (text) => {
+  return {
+    type: 'SEARCH_CHANGED',
+    payload: text,
+  };
+};
+
+const filterChanged = (text) => {
+  return {
+    type: 'FILTER_CHANGED',
+    payload: text,
+  };
+};
+
+//list
+const itemToggleDone = (id) => {
+  return {
+    type: 'ITEM_TOGGLE_DONE',
+    payload: id,
+  };
+};
+const itemToggleImportant = (id) => {
+  return {
+    type: 'ITEM_TOGGLE_IMPORTANT',
+    payload: id,
+  };
+};
+const itemDelete = (id) => {
+  return {
+    type: 'ITEM_DELETE',
+    payload: id,
+  };
+};
+
+//addForm
 const itemAdd = (label) => {
   return {
     type: 'ITEM_ADD',
@@ -12,16 +48,10 @@ const itemInputChange = (label) => {
   };
 };
 
-const form = () => {
-  return {
-    type: 'FORM',
-  };
+export {
+  itemAdd,
+  itemInputChange,
+  itemToggleDone,
+  itemToggleImportant,
+  itemDelete,
 };
-
-const search = () => {
-  return {
-    type: 'SEARCH',
-  };
-};
-
-export { itemAdd, itemInputChange, form, search };
