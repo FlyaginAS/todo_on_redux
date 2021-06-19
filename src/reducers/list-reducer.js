@@ -47,37 +47,22 @@ const listReducer = (state, action) => {
     //     });
     //   };
     case 'ITEM_TOGGLE_DONE':
-      const items = toggleProperty(
+      let items = toggleProperty(
         state.list.items,
         action.payload,
         'done'
       );
-      return { items };
+      return { ...state.list, items };
 
     case 'ITEM_TOGGLE_IMPORTANT':
-      console.log(`item id  ${action.payload} toggle important`);
-      return {
-        items: [
-          {
-            id: 1,
-            label: 'Drink Coffee',
-            important: false,
-            done: false,
-          },
-          {
-            id: 2,
-            label: 'Learn React',
-            important: true,
-            done: false,
-          },
-          {
-            id: 3,
-            label: 'Make Awesome App',
-            important: false,
-            done: false,
-          },
-        ],
-      };
+      console.log(`toggle imp ${action.payload}`);
+      let arr = toggleProperty(
+        state.list.items,
+        action.payload,
+        'important'
+      );
+      return { ...state.list, items: arr };
+
     case 'ITEM_DELETE':
       console.log(`item id  ${action.payload} toggle delete`);
       return {
@@ -102,6 +87,7 @@ const listReducer = (state, action) => {
           },
         ],
       };
+
     case 'ITEM_ADD':
       const createItem = (label) => {
         return {
