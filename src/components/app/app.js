@@ -118,21 +118,19 @@ class App extends Component {
     return (
       <div className="todo-app">
         <AppHeader />
-
         <div className="search-panel d-flex">
           <SearchPanel />
-
           <ItemStatusFilter />
         </div>
 
         <TodoList
-          items={visibleItems}
-          onToggleImportant={this.onToggleImportant}
-          onToggleDone={this.onToggleDone}
-          onDelete={this.onDelete}
+        // items={visibleItems}
+        // onToggleImportant={this.onToggleImportant}
+        // onToggleDone={this.onToggleDone}
+        // onDelete={this.onDelete}
         />
 
-        <ItemAddForm onItemAdded={this.onItemAdded} />
+        <ItemAddForm />
       </div>
     );
   }
