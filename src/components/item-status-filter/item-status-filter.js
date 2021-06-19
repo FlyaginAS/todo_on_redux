@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { filterChanged } from '../../actions';
 
 const filterButtons = [
   { name: 'all', label: 'All' },
@@ -7,7 +8,7 @@ const filterButtons = [
   { name: 'done', label: 'Done' },
 ];
 
-const ItemStatusFilter = ({ filter, onFilterChange = () => {} }) => {
+const ItemStatusFilter = ({ filterChanged, filter }) => {
   const buttons = filterButtons.map(({ name, label }) => {
     const isActive = name === filter;
     const classNames =
@@ -17,7 +18,7 @@ const ItemStatusFilter = ({ filter, onFilterChange = () => {} }) => {
       <button
         key={name}
         type="button"
-        onClick={() => onFilterChange(name)}
+        onClick={() => filterChanged(name)}
         className={classNames}
       >
         {label}
@@ -28,4 +29,17 @@ const ItemStatusFilter = ({ filter, onFilterChange = () => {} }) => {
   return <div className="btn-group">{buttons}</div>;
 };
 
-export default connect()(ItemStatusFilter);
+const mapStateToProps = ({ search: { filter } }) => {
+  return {
+    filter,
+  };
+};
+
+const mapDispatchToProps = {
+  filterChanged,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ItemStatusFilter);
