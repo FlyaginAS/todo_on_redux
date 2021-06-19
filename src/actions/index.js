@@ -54,4 +54,6 @@ export {
   itemToggleDone,
   itemToggleImportant,
   itemDelete,
+  searchChanged,
+  filterChanged,
 };

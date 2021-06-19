@@ -108,8 +108,8 @@ class App extends Component {
 
   render() {
     const { items, filter, search } = this.state;
-    const doneCount = items.filter((item) => item.done).length;
-    const toDoCount = items.length - doneCount;
+    // const doneCount = items.filter((item) => item.done).length;
+    // const toDoCount = items.length - doneCount;
     const visibleItems = this.searchItems(
       this.filterItems(items, filter),
       search
@@ -117,7 +117,7 @@ class App extends Component {
 
     return (
       <div className="todo-app">
-        <AppHeader toDo={toDoCount} done={doneCount} />
+        <AppHeader />
 
         <div className="search-panel d-flex">
           <SearchPanel onSearchChange={this.onSearchChange} />

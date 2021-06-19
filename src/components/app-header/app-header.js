@@ -1,13 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './app-header.css';
 
-const AppHeader = ({toDo, done}) => {
+const AppHeader = ({ items }) => {
+  const doneCount = items.filter((item) => item.done).length;
+  const toDoCount = items.length - doneCount;
   return (
     <div className="app-header d-flex">
       <h1>Todo List</h1>
-      <h2>{toDo} more to do, {done} done</h2>
+      <h2>
+        {toDoCount} more to do, {doneCount} done
+      </h2>
     </div>
   );
 };
 
-export default AppHeader;
+const mapStateToProps = ({ list: { items } }) => {
+  return {
+    items,
+  };
+};
+
+export default connect(mapStateToProps)(AppHeader);
