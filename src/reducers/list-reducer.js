@@ -29,13 +29,6 @@ const listReducer = (state, action) => {
     };
   }
   switch (action.type) {
-    //   onToggleImportant = (id) => {
-    //     this.setState((state) => {
-    //       const items = this.toggleProperty(state.items, id, 'important');
-    //       return { items };
-    //     });
-    //   };
-
     //   onDelete = (id) => {
     //     this.setState((state) => {
     //       const idx = state.items.findIndex((item) => item.id === id);
@@ -55,7 +48,6 @@ const listReducer = (state, action) => {
       return { ...state.list, items };
 
     case 'ITEM_TOGGLE_IMPORTANT':
-      console.log(`toggle imp ${action.payload}`);
       let arr = toggleProperty(
         state.list.items,
         action.payload,
@@ -64,30 +56,15 @@ const listReducer = (state, action) => {
       return { ...state.list, items: arr };
 
     case 'ITEM_DELETE':
-      console.log(`item id  ${action.payload} toggle delete`);
+      const idx = state.list.items.findIndex(
+        (item) => item.id === action.payload
+      );
+      let newArr = state.list.items.slice();
+      newArr.splice(idx, 1);
       return {
-        items: [
-          {
-            id: 1,
-            label: 'Drink Coffee',
-            important: false,
-            done: false,
-          },
-          {
-            id: 2,
-            label: 'Learn React',
-            important: true,
-            done: false,
-          },
-          {
-            id: 3,
-            label: 'Make Awesome App',
-            important: false,
-            done: false,
-          },
-        ],
+        ...state.list,
+        items: newArr,
       };
-
     case 'ITEM_ADD':
       const createItem = (label) => {
         return {
