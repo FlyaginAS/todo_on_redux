@@ -7,6 +7,7 @@ import ItemStatusFilter from '../item-status-filter';
 import ItemAddForm from '../item-add-form';
 
 import './app.css';
+import { connect } from 'react-redux';
 
 class App extends Component {
   maxId = 100;
@@ -107,9 +108,8 @@ class App extends Component {
   }
 
   render() {
-    const { items, filter, search } = this.state;
-    // const doneCount = items.filter((item) => item.done).length;
-    // const toDoCount = items.length - doneCount;
+    const { items, filter, search } = this.props;
+
     const visibleItems = this.searchItems(
       this.filterItems(items, filter),
       search
@@ -120,12 +120,9 @@ class App extends Component {
         <AppHeader />
 
         <div className="search-panel d-flex">
-          <SearchPanel onSearchChange={this.onSearchChange} />
+          <SearchPanel />
 
-          <ItemStatusFilter
-            filter={filter}
-            onFilterChange={this.onFilterChange}
-          />
+          <ItemStatusFilter />
         </div>
 
         <TodoList
@@ -141,4 +138,17 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({
+  list: { items },
+  search: { input, filter },
+}) => {
+  return {
+    items,
+    filter,
+    search: input,
+  };
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps)(App);

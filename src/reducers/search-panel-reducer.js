@@ -8,16 +8,16 @@ const searchPanelReducer = (state, action) => {
 
   switch (action.type) {
     case 'SEARCH_CHANGED':
-      console.log(`search chaned`);
+      console.log(`search chaned ${action.payload}`);
       return {
-        filter: 'all',
-        input: '',
+        ...state.search,
+        input: action.payload,
       };
     case 'FILTER_CHANGED':
       console.log(`FILTER chaned`);
       return {
-        filter: 'all',
-        input: '',
+        ...state.search,
+        filter: action.payload,
       };
     default:
       return state.search;
