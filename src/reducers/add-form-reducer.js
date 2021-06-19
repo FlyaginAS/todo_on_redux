@@ -6,15 +6,13 @@ const addFormReducer = (state, action) => {
   }
 
   switch (action.type) {
-    case 'ITEM_ADD':
-      console.log(`item ${action.payload} added`);
+    case 'ITEM_INPUT_CHANGE':
       return {
         label: action.payload,
       };
-    case 'ITEM_INPUT_CHANGE':
-      console.log(`item ${action.payload} changed`);
+    case 'INPUT_CLEAR':
       return {
-        label: action.payload,
+        label: '',
       };
     default:
       return state.addForm;

@@ -47,6 +47,12 @@ const itemInputChange = (label) => {
     payload: label,
   };
 };
+const inputClear = (label) => {
+  return {
+    type: 'INPUT_CLEAR',
+    payload: label,
+  };
+};
 
 export {
   itemAdd,
@@ -56,4 +62,5 @@ export {
   itemDelete,
   searchChanged,
   filterChanged,
+  inputClear,
 };

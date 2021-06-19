@@ -1,10 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { itemAdd, itemInputChange } from '../../actions';
+import { itemAdd, itemInputChange, inputClear } from '../../actions';
 
 import './item-add-form.css';
 
-const ItemAddForm = ({ label, itemAdd, itemInputChange }) => {
+const ItemAddForm = ({
+  label,
+  itemAdd,
+  itemInputChange,
+  inputClear,
+}) => {
   const onLabelChange = (evt) => {
     let valueInput = evt.target.value;
 
@@ -14,6 +19,7 @@ const ItemAddForm = ({ label, itemAdd, itemInputChange }) => {
   const onSubmit = (evt) => {
     evt.preventDefault();
     itemAdd(label);
+    inputClear();
   };
 
   return (
@@ -42,6 +48,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = {
   itemAdd,
   itemInputChange,
+  inputClear,
 };
 
 export default connect(
